@@ -1,0 +1,80 @@
+.nav-list {
+	.generate-nav-list();
+}
+
+.generate-nav-list (@primary:#1abc9c; @secondary: #34495e; @text-color: #fff; @active-text-color: #fff; @border-radius: 4px;) {
+	background-color: @secondary;
+	border-radius: @border-radius;
+	overflow: hidden;
+
+	> li {
+		float: none;
+		border-bottom: 2px solid darken(@secondary, 15%);
+	
+		> a {
+			color: @text-color;
+
+			&:hover {
+				background-color: darken(@secondary, 15%);
+			}
+		}
+
+		&.active > a {
+			&,
+			&:hover,
+			&:focus {
+				color: @active-text-color;
+				font-weight: bold;
+				background-color: @primary;
+			}
+		}
+	}
+
+	> li:last-child {
+		border-bottom: none;
+	}
+
+	.nav-sublist{
+		.generate-nav-sublist(@primary; @secondary; @text-color; @active-text-color; @border-radius;);
+	}
+}
+
+.generate-nav-sublist(@primary:#428bca; @secondary: #fff; @text-color: #555; @active-text-color: #fff; @border-radius: 0px;) {
+	border-radius: 0px;
+
+	> li {
+		border-bottom: 0px;
+		
+		> a {
+			color: @text-color;
+			border-left: 10px solid lighten(@primary, 20%);
+			&,
+	  		&:hover,
+	  		&:focus {
+				color: @text-color;
+				background-color: darken(@secondary, 15%);
+			}
+		}
+
+		&.active > a {
+	  		&,
+	  		&:hover,
+	  		&:focus {
+				color: lighten(@primary, 20%);
+				font-weight: bold;
+				background-color: darken(@secondary, 20%);
+			}
+
+			&:before {
+				content: ' ';
+				height: 0;
+				position: absolute;
+				width: 0;
+				left: 0px;
+				top: 10px;
+				border: 10px solid transparent;
+				border-left-color: lighten(@primary, 20%);
+			}
+		}
+	}
+}
