@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>wp-bootstrap-navlist-walker by twittem</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>wp-bootstrap-navlist-walker</h1>
+        <p>Custom list navigation for WordPress themes utilizing the Bootstrap framework. The package includes a custom walker class &amp; Less file with mixins, and support bootstraps Affix &amp; Scrollspy</p>
+
+        <p class="view"><a href="https://github.com/twittem/wp-bootstrap-navlist-walker">View the Project on GitHub <small>twittem/wp-bootstrap-navlist-walker</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/twittem/wp-bootstrap-navlist-walker/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/twittem/wp-bootstrap-navlist-walker/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/twittem/wp-bootstrap-navlist-walker">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="wp-bootstrap-navlist-walker" class="anchor" href="#wp-bootstrap-navlist-walker"><span class="octicon octicon-link"></span></a>wp-bootstrap-navlist-walker</h1>
+
+<p><strong>Custom list navigation for WordPress themes utilizing the Bootstrap framework. The package includes a custom walker class &amp; Less file with mixins.</strong></p>
+
+<p><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-success-inverse.jpg" alt=".nav-list-success"></p>
+
+<p><strong>Walker Class Features</strong></p>
+
+<ul>
+<li>Structures menu HTML in a Bootstrap format</li>
+<li>Standard WordPress classes removed</li>
+<li>Child items are only rendered when parent is active</li>
+<li>Structured to support  Bootstrap Affix &amp; Scroll Spy</li>
+</ul><p><strong>LESS Features</strong></p>
+
+<ul>
+<li>Custom list menu style</li>
+<li>Support for light and dark menus</li>
+<li>12 Included color schemes</li>
+<li>Mixin to quickly create custom color schemes</li>
+</ul><h2>
+<a name="note" class="anchor" href="#note"><span class="octicon octicon-link"></span></a>NOTE</h2>
+
+<p>This is a utility class that is intended to format your WordPress theme menu with the correct syntax and classes to utilize the Bootstrap navigation, and does not include the required Bootstrap JS files. You will have to include them manually. </p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Place <strong>wp_bootstrap_navlist_walker.php</strong> in your WordPress theme folder <code>/wp-content/your-theme/</code></p>
+
+<p>Open your WordPress themes <strong>functions.php</strong> file  <code>/wp-content/your-theme/functions.php</code> and add the following code:</p>
+
+<div class="highlight highlight-php"><pre><span class="c1">// Register Custom Navigation Walker</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'wp_bootstrap_navlist_walker.php'</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Update your <code>wp_nav_menu()</code> function in <code>header.php</code> to use the new walker by adding a "walker" item to the wp_nav_menu array.</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+    <span class="nx">wp_nav_menu</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'menu'</span>              <span class="o">=&gt;</span> <span class="s1">'primary'</span><span class="p">,</span>
+        <span class="s1">'theme_location'</span>    <span class="o">=&gt;</span> <span class="s1">'primary'</span><span class="p">,</span>
+        <span class="s1">'depth'</span>             <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">'container'</span>         <span class="o">=&gt;</span> <span class="s1">'false'</span><span class="p">,</span>
+        <span class="s1">'menu_class'</span>        <span class="o">=&gt;</span> <span class="s1">'nav nav-list'</span><span class="p">,</span>
+        <span class="s1">'fallback_cb'</span>       <span class="o">=&gt;</span> <span class="s1">'wp_bootstrap_navlist_walker::fallback'</span><span class="p">,</span>
+        <span class="s1">'walker'</span>            <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">wp_bootstrap_navlist_walker</span><span class="p">())</span>
+    <span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+
+<p>Your menu will now be formatted with the correct syntax and classes to implement Bootstrap dropdown navigation. </p>
+
+<p>You will also want to declare your new menu in your <code>functions.php</code> file.</p>
+
+<div class="highlight highlight-php"><pre><span class="nx">register_nav_menus</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'primary'</span> <span class="o">=&gt;</span> <span class="nx">__</span><span class="p">(</span> <span class="s1">'Primary Menu'</span><span class="p">,</span> <span class="s1">'THEMENAME'</span> <span class="p">),</span>
+<span class="p">)</span> <span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="displaying-the-menu-" class="anchor" href="#displaying-the-menu-"><span class="octicon octicon-link"></span></a>Displaying the Menu </h2>
+
+<p>To display the menu you must associate your menu with your theme location. You can do this by selecting your theme location in the <em>Theme Locations</em> list wile editing a menu in the WordPress menu manager.</p>
+
+<h2>
+<a name="glyphicons" class="anchor" href="#glyphicons"><span class="octicon octicon-link"></span></a>Glyphicons</h2>
+
+<p>To add an Icon to your link simple place the Glyphicon class name in the links <strong>Title Attribute</strong> field and the class will do the rest. IE <code>glyphicon-bullhorn</code></p>
+
+<p><img src="http://edwardmcintyre.com/pub/github/navwalker-3-glyphicons.jpg" alt="Header Example"></p>
+
+<h2>
+<a name="disabled-links" class="anchor" href="#disabled-links"><span class="octicon octicon-link"></span></a>Disabled Links</h2>
+
+<p>To set a disabled link simply set the <strong>Title Attribute</strong> to <code>disabled</code> and the class will do the rest. </p>
+
+<p><img src="http://edwardmcintyre.com/pub/github/navwalker-3-disabled.jpg" alt="Header Example"></p>
+
+<h1>
+<a name="less-style" class="anchor" href="#less-style"><span class="octicon octicon-link"></span></a>LESS Style</h1>
+
+<p>The included nav-list.less comes with 12 menus styles, and a bunch of handy custom LESS mixins to make generating your own styles quick and easy. </p>
+
+<h2>
+<a name="included-styles" class="anchor" href="#included-styles"><span class="octicon octicon-link"></span></a>Included Styles</h2>
+
+<p>To switch out styles simply add the desired css classes to you <code>wp_nav_menu</code> declarations <code>menu_class</code> variable.</p>
+
+<p><code>'menu_class' =&gt; 'nav nav-list-inverse nav-list-info'</code></p>
+
+<p><strong>.nav-list</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list.jpg" alt=".nav-list"></p>
+
+<p><strong>.nav-list-primary</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-primary.jpg" alt=".nav-list-primary"></p>
+
+<p><strong>.nav-list-success</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-success.jpg" alt=".nav-list-success"></p>
+
+<p><strong>.nav-list-warning</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-warning.jpg" alt=".nav-list-warning"></p>
+
+<p><strong>.nav-list-info</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-info.jpg" alt=".nav-list-info"></p>
+
+<p><strong>.nav-list-danger</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-danger.jpg" alt=".nav-list-danger"></p>
+
+<p><strong>.nav-list-inverse</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-inverse.jpg" alt=".nav-list"></p>
+
+<p><strong>.nav-list-inverse .nav-list-primary</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-primary-inverse.jpg" alt=".nav-list-primary"></p>
+
+<p><strong>.nav-list-inverse .nav-list-success</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-success-inverse.jpg" alt=".nav-list-success"></p>
+
+<p><strong>.nav-list-inverse .nav-list-warning</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-warning-inverse.jpg" alt=".nav-list-warning"></p>
+
+<p><strong>.nav-list-inverse .nav-list-info</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-info-inverse.jpg" alt=".nav-list-info"></p>
+
+<p><strong>.nav-list-inverse .nav-list-danger</strong><br><img src="http://edwardmcintyre.com/pub/github/nav-list/nav-list-danger-inverse.jpg" alt=".nav-list-danger"></p>
+
+<h2>
+<a name="custom-styles" class="anchor" href="#custom-styles"><span class="octicon octicon-link"></span></a>Custom Styles</h2>
+
+<p>The included LESS file includes some powerful mixins that make creating a custom style incredibly simple. At it's simplest you can create a custom style by using the <code>.generate-nav-list</code> mixin and passing a single color.</p>
+
+<div class="highlight highlight-css"><pre><span class="nc">.nav-list-peach</span> <span class="p">{</span>
+    <span class="o">.</span><span class="n">generate</span><span class="o">-</span><span class="n">nav</span><span class="o">-</span><span class="n">list</span><span class="p">(</span> <span class="m">#ffbf6d</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>When you call the <code>.generate-nav-list()</code> mixin it compares your <a href="https://github.com/primary" class="user-mention">@primary</a> &amp; @secondary colors luminance values, then based on the luminance difference generates text, border, and highlight colors.</p>
+
+<p>Here is a rundown of all of the <code>.generate-nav-list()</code> variables. </p>
+
+<p><code>.generate-nav-list (@primary, @secondary, @border-width, @border-radius);</code></p>
+
+<p><strong><a href="https://github.com/primary" class="user-mention">@primary</a></strong> - <em>Required</em> - Your menus foreground color for highlighted menu items. On a light colored menu this color is also use to generate accent colors. </p>
+
+<p><strong>@secondary</strong> - <em>Default: #fff;</em> - Your menus background color. On a dark colored menu this color is also use to generate accent colors.</p>
+
+<p><strong>@border-width</strong> - <em>Default: 1px;</em> - The border width around the menu in pixels.</p>
+
+<p><strong><a href="https://github.com/border-radius" class="user-mention">@border-radius</a></strong> - <em>Default: @border-radius-base</em> - The menus border radius in pixels.</p>
+
+<h1>
+<a name="affix--scrollspy" class="anchor" href="#affix--scrollspy"><span class="octicon octicon-link"></span></a>Affix &amp; Scrollspy</h1>
+
+<p>wp-bootstrap-navlist-walker is setup to support Bootstrap's Affix &amp; Scrollspy javascript. </p>
+
+<p>If you have the Bootstrap Affix javascript loaded you can affix the menu by wrapping it in a <code>&lt;div&gt;</code> in including the appropriate data attributes. Visit <a href="http://getbootstrap.com/javascript/#affix">http://getbootstrap.com/javascript/#affix</a> for more info.</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">data</span><span class="o">-</span><span class="nx">spy</span><span class="o">=</span><span class="s2">"affix"</span> <span class="nx">data</span><span class="o">-</span><span class="nx">offset</span><span class="o">-</span><span class="nx">top</span><span class="o">=</span><span class="s2">"200"</span><span class="o">&gt;</span>
+    <span class="o">&lt;?</span><span class="nx">php</span>
+        <span class="nx">wp_nav_menu</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'menu'</span>              <span class="o">=&gt;</span> <span class="s1">'primary'</span><span class="p">,</span>
+            <span class="s1">'theme_location'</span>    <span class="o">=&gt;</span> <span class="s1">'primary'</span><span class="p">,</span>
+            <span class="s1">'depth'</span>             <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s1">'container'</span>         <span class="o">=&gt;</span> <span class="s1">'false'</span><span class="p">,</span>
+            <span class="s1">'menu_class'</span>        <span class="o">=&gt;</span> <span class="s1">'nav nav-list-inverse nav-list-info'</span><span class="p">,</span>
+            <span class="s1">'fallback_cb'</span>       <span class="o">=&gt;</span> <span class="s1">'wp_bootstrap_sidenav_walker::fallback'</span><span class="p">,</span>
+            <span class="s1">'walker'</span>            <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">wp_bootstrap_sidenav_walker</span><span class="p">())</span>
+        <span class="p">);</span>
+    <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">&lt;/div&gt;</span>
+</pre></div>
+
+<p>If you have the Bootstrap Scrollspy javascript loaded you can Scrollspy the sub menu items by following the steps at <a href="http://getbootstrap.com/javascript/#scrollspy">http://getbootstrap.com/javascript/#scrollspy</a> and spying the <code>#nav-sublist</code> ID.</p>
+
+<h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<p><strong>1.0</strong></p>
+
+<ul>
+<li>Initial Class</li>
+</ul><p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/twittem/wp-bootstrap-navlist-walker/trend.png" alt="Bitdeli Badge"></a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/twittem">twittem</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-39327681-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
