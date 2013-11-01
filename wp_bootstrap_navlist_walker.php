@@ -1,16 +1,16 @@
 <?php
 
-/**
- * Class Name: wp_bootstrap_sidenav_walker
- * GitHub URI: https://github.com/twittem/wp-bootstrap-sidenav-walker
+/*
+ * Class Name: wp_bootstrap_navlist_walker
+ * GitHub URI: https://github.com/twittem/wp-bootstrap-navlist-walker
  * Description: A custom WordPress nav walker class to implement the Bootstrap 3 navigation style in a custom theme using the WordPress built in menu manager.
- * Version: 1.0
+ * Version: 1.0 RC1
  * Author: Edward McIntyre - @twittem
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-class wp_bootstrap_sidenav_walker extends Walker_Nav_Menu {
+class wp_bootstrap_navlist_walker extends Walker_Nav_Menu {
 
 	/**
 	 * @see Walker::start_lvl()
@@ -21,7 +21,7 @@ class wp_bootstrap_sidenav_walker extends Walker_Nav_Menu {
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat( "\t", $depth );
-		$output .= "\n$indent<div id=\"side-nav\"><ul role=\"menu\" class=\"nav nav-sublist\">\n";
+		$output .= "\n$indent<div id=\"nav-sublist\"><ul role=\"menu\" class=\"nav nav-sublist\">\n";
 	}
 
 	/**
