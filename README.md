@@ -174,3 +174,6 @@ Changelog
 ------------
 **1.0**
 + Initial Class
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/twittem/wp-bootstrap-navlist-walker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
